@@ -5,6 +5,7 @@ import numpy as np
 
 def main():
 #    -George_Orwell
+#    1984_small
 #    read the text; parse it into words
     text = None
     fname = '1984-George_Orwell.txt'
@@ -22,6 +23,7 @@ def main():
     for word in words:
         fwd_list.add(word)
     
+    list_cmp_cnt = fu.glob_cmp_cnt
     
     fwd_list_stat = []
     current = fwd_list.head
@@ -41,8 +43,11 @@ def main():
 #    2) fill the bin_tree
     bin_tree = fu.BinarySearchTree()
     
+    
     for word in words:
         bin_tree.put(word)
+    
+    tree_cmp_cnt = fu.glob_cmp_cnt
     
     bin_tree_stat = bin_tree.get_all_nodes()
     
@@ -56,6 +61,11 @@ def main():
     print "Fwd_list and Bin_tree are equivalent:", equal
     
     
+    
+#    saving cmp_cnt to file
+    with open('cmp_cnt.txt', 'a') as f:
+        s = str(len(count_arr_fwd)) + ' ' + str(list_cmp_cnt) + ' ' + str(tree_cmp_cnt) + '\n'
+        f.write(s)
     
     
     
